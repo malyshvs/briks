@@ -37,9 +37,10 @@ const AdminUsersPage = () => {
           className="border px-3 py-2 rounded-md"
         >
           <option value="all">Все роли</option>
-          <option value="user">Пользователи</option>
+          <option value="Пользователь">Пользователи</option>
+          <option value="Модератор заявок">Модераторы заявок</option>
+          <option value="Модератор форумап">Модераторы заявок</option>
           <option value="admin">Администраторы</option>
-          <option value="request_moderator">Модераторы заявок</option>
         </select>
 
         <input
