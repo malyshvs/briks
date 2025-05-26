@@ -52,4 +52,9 @@ coverage/
 # photos
 server/public/uploads
 
+<<<<<<< HEAD
 *.sqlite
+=======
+
+*.sqlite
+>>>>>>> 49facbe786bd92ed63e7c375ad83515cb69b5ede
