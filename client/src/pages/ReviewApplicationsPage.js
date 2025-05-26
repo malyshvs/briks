@@ -84,6 +84,10 @@ const ReviewApplicationsPage = () => {
                   <strong>Пользователь:</strong> {app.User?.fullName} (
                   {app.User?.email})
                 </p>
+                <p className="text-gray-700 mt-2">
+                  <strong>Презентация:</strong>{" "}
+                  <a href={app.presentationLink}>{app.presentationLink}</a>
+                </p>
               </div>
 
               <div className="text-right">
