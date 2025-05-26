@@ -42,7 +42,7 @@ const User = sequelize.define("User", {
       "Модератор заявок",
       "admin"
     ),
-    defaultValue: "user",
+    defaultValue: "Пользователь",
   },
   isVerified: {
     type: DataTypes.BOOLEAN,
