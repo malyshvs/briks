@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const defaultAvatars = [
   "avatars/avatar1.png",
   "avatars/avatar2.png",
@@ -11,6 +12,7 @@ const defaultAvatars = [
 const tracks = ["Музыка", "Кино", "Анимация"];
 
 const Profile = () => {
+  const { t } = useTranslation();
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -168,10 +170,7 @@ const Profile = () => {
   const handleContestSubmit = async (e) => {
     e.preventDefault();
     setContestMessage("");
-    if (!contestData.agreement) {
-      setContestMessage("Пожалуйста, подтвердите согласие с политикой.");
-      return;
-    }
+
     try {
       const token = localStorage.getItem("token");
       await axios.post(
@@ -211,7 +210,7 @@ const Profile = () => {
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-center">Личный кабинет</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">{t("profile")}</h1>
 
       <div className="flex justify-center mb-4">
         <img
@@ -231,30 +230,30 @@ const Profile = () => {
         <>
           <div className="space-y-3 text-gray-800">
             <p>
-              <strong>ФИО:</strong> {user.fullName}
+              <strong>{t("fullName")}:</strong> {user.fullName}
             </p>
             <p>
-              <strong>Псевдоним:</strong> {user.nickname}
+              <strong>{t("nickname")}:</strong> {user.nickname}
             </p>
             <p>
               <strong>Email:</strong> {user.email}
             </p>
             <p>
-              <strong>Дата рождения:</strong>{" "}
+              <strong>{t("birthDate")}:</strong>{" "}
               {user.birthDate ? user.birthDate.slice(0, 10) : "-"}
             </p>
             <p>
-              <strong>Телефон:</strong> {user.phone || "-"}
+              <strong>{t("phone")}:</strong> {user.phone || "-"}
             </p>
             <p>
-              <strong>Гражданство:</strong> {user.citizenship || "-"}
+              <strong>{t("citizenship")}:</strong> {user.citizenship || "-"}
             </p>
             <p>
-              <strong>Адрес регистрации:</strong>{" "}
+              <strong>{t("registrationAddress")}:</strong>{" "}
               {user.registrationAddress || "-"}
             </p>
             <p>
-              <strong>Роль:</strong> {user.role}
+              <strong>{t("role")}:</strong> {user.role}
             </p>
             {(user.role === "Модератор заявок" || user.role === "admin") && (
               <Link
@@ -278,16 +277,18 @@ const Profile = () => {
             onClick={handleEditClick}
             className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
           >
-            Редактировать
+            {t("edit")}
           </button>
           <div className="space-y-3 text-gray-800">
             {user.hasAppliedToContest && user.role === "Пользователь" && (
               <p>
-                <strong>Статус заявки на конкурс:</strong>{" "}
-                {user.contestStatus === "pending" && "На рассмотрении"}
-                {user.contestStatus === "approved" && "Одобрена"}
-                {user.contestStatus === "rejected" && "Отклонена"}
-                {!user.contestStatus && "Заявка подана"}
+                <strong>{t("contestStatus.status")}:</strong>{" "}
+                {user.contestStatus === "pending" && t("contestStatus.pending")}
+                {user.contestStatus === "approved" &&
+                  t("contestStatus.approved")}
+                {user.contestStatus === "rejected" &&
+                  t("contestStatus.rejected")}
+                {!user.contestStatus && t("contestStatus.applied")}
               </p>
             )}
           </div>
@@ -507,27 +508,7 @@ const Profile = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              name="agreement"
-              checked={contestData.agreement}
-              onChange={handleContestChange}
-              className="mr-2"
-              id="agreement"
-            />
-            <label htmlFor="agreement" className="text-sm">
-              Я согласен с{" "}
-              <a
-                href="/privacy"
-                className="underline text-blue-600"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                политикой конфиденциальности
-              </a>
-            </label>
-          </div>
+
           <button
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded"
@@ -544,7 +525,7 @@ const Profile = () => {
         onClick={handleLogout}
         className="mt-6 w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded"
       >
-        Выйти
+        {t("logout")}
       </button>
     </div>
   );

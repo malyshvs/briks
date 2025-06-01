@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const directions = ["Музыка", "Анимация", "Кино"];
+import { useTranslation } from "react-i18next";
 
 const Tracks = () => {
+  const { t } = useTranslation();
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [entries, setEntries] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -12,11 +12,17 @@ const Tracks = () => {
 
   const navigate = useNavigate();
 
+  const directions = [
+    t("tracks.music"),
+    t("tracks.animation"),
+    t("tracks.cinema"),
+  ];
+
   useEffect(() => {
     axios
       .get("/api/auth/me")
       .then((res) => setUser(res.data))
-      .catch((err) => console.error("Ошибка загрузки профиля:", err));
+      .catch((err) => console.error(t("tracks.profileLoadError"), err));
   }, []);
 
   useEffect(() => {
@@ -24,7 +30,7 @@ const Tracks = () => {
       axios
         .get(`/api/auth/contest/approved/${selectedTrack}`)
         .then((res) => setEntries(res.data))
-        .catch((err) => console.error("Ошибка загрузки заявок:", err));
+        .catch((err) => console.error(t("tracks.entriesLoadError"), err));
     }
   }, [selectedTrack]);
 
@@ -36,19 +42,20 @@ const Tracks = () => {
   };
 
   const canApply =
-    user && user.role === "Пользователь" && !user.hasAppliedToContest;
+    user && user.role === t("roles.user") && !user.hasAppliedToContest;
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Направления</h1>
+      <h1 className="text-3xl font-bold mb-6">{t("tracks.title")}</h1>
 
-      {/* Выпадающий фильтр */}
       <div className="relative mb-8">
         <button
           onClick={toggleDropdown}
           className="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition"
         >
-          {selectedTrack ? `Выбрано: ${selectedTrack}` : "Выбрать направление"}
+          {selectedTrack
+            ? `${t("tracks.selected")}: ${selectedTrack}`
+            : t("tracks.select")}
         </button>
 
         {dropdownOpen && (
@@ -66,18 +73,15 @@ const Tracks = () => {
         )}
       </div>
 
-      {/* Работы участников */}
       {selectedTrack && (
         <>
           <h2 className="text-2xl font-semibold mb-4">
-            Работы участников направления:{" "}
+            {t("tracks.entriesTitle")}:{" "}
             <span className="capitalize">{selectedTrack}</span>
           </h2>
 
           {entries.length === 0 ? (
-            <p className="text-gray-500">
-              Нет одобренных работ по этому направлению.
-            </p>
+            <p className="text-gray-500">{t("tracks.noEntries")}</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {entries.map((entry) => (
@@ -92,7 +96,8 @@ const Tracks = () => {
                     {entry.projectDescription}
                   </p>
                   <p className="text-sm text-gray-600 mb-2">
-                    Автор: <strong>{entry.User.nickname}</strong> ({entry.city})
+                    {t("tracks.author")}: <strong>{entry.User.nickname}</strong>{" "}
+                    ({entry.city})
                   </p>
                   {entry.presentationLink && (
                     <a
@@ -101,7 +106,7 @@ const Tracks = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Презентация
+                      {t("tracks.presentation")}
                     </a>
                   )}
                 </div>
@@ -109,14 +114,13 @@ const Tracks = () => {
             </div>
           )}
 
-          {/* Кнопка "Участвовать" */}
           {canApply && (
             <div className="mt-10 text-center">
               <button
                 onClick={() => navigate("/profile")}
                 className="bg-green-600 text-white px-6 py-3 rounded shadow hover:bg-green-700 transition"
               >
-                Участвовать в направлении
+                {t("tracks.participate")}
               </button>
             </div>
           )}

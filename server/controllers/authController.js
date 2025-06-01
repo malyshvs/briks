@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Contest = require("../models/Contest");
 const { v4: uuidv4 } = require("uuid");
-
+const Mailer = require("../utils/sendEmail");
 const SECRET = "Lazareva1"; // перенести в .env
 
 exports.verifyEmail = async (req, res) => {
@@ -126,6 +126,7 @@ exports.register = async (req, res) => {
       verificationToken,
       hasAppliedToContest: false,
     });
+    Mailer.sendVerificationEmail(email, verificationToken);
     console.log(
       `🔗 Email Verification Link: http://localhost:5000/api/auth/verify/${verificationToken}`
     );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useTranslation } from "react-i18next";
 const NewsPage = () => {
   const [newsList, setNewsList] = useState([]);
   const token = localStorage.getItem("token");
@@ -18,7 +18,7 @@ const NewsPage = () => {
     role: "",
     avatar: "",
   });
-
+  const { t } = useTranslation();
   const fetchNews = async () => {
     const res = await axios.get("/api/news", {
       headers: { Authorization: `Bearer ${token}` },
@@ -63,7 +63,7 @@ const NewsPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Новости</h1>
+      <h1 className="text-3xl font-bold mb-6">{t("news")}</h1>
       {isEditor && (
         <div className="mb-4">
           <Link
@@ -90,7 +90,7 @@ const NewsPage = () => {
                 <h2 className="text-xl font-semibold">{news.title}</h2>
                 <p className="text-sm text-gray-500">{news.preview}</p>
                 <p className="text-xs text-gray-400 mt-2">
-                  Автор: {news.author?.fullName} |{" "}
+                  {t("author")}: {news.author?.fullName} |{" "}
                   {new Date(news.createdAt).toLocaleString()}
                 </p>
               </div>

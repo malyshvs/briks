@@ -1,0 +1,87 @@
+{
+  "registerTitle": "Register",
+  "fullName": "Full Name",
+  "nickname": "Nickname",
+  "password": "Password",
+  "birthDate": "Date of Birth",
+  "phone": "Phone Number",
+  "citizenship": "Citizenship",
+  "registrationAddress": "Registration Address",
+  "avatarLabel": "Avatar",
+  "uploadYourOwn": "Or upload your own:",
+  "agreementText": "I agree with the",
+  "privacyPolicy": "privacy policy",
+  "register": "Register",
+  "alreadyHaveAccount": "Already have an account?",
+  "login": "Login",
+  "role":"Role",
+    "edit":"Edit",
+  "error": {
+    "agreement": "Please agree to the privacy policy.",
+    "registration": "Registration error"
+  },
+  "home": "Home",
+  "forum": "Forum",
+  "news": "News",
+  "tracksTitle": "Tracks",
+  "history": "History",
+  "faqTitle": "FAQ",
+  "profile": "Profile",
+  "contactUs": "Contact Us",
+  "loading": "Loading...",
+  "faq": {
+    "title": "Frequently Asked Questions (FAQ)",
+    "noQuestions": "No questions yet.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add new question",
+    "editing": "Edit question",
+    "questionLabel": "Question",
+    "answerLabel": "Answer",
+    "questionPlaceholder": "Enter question",
+    "answerPlaceholder": "Enter answer",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "loginTitle":"Log in",
+  "NoAcc":"Don't have an account?",
+  "footer": {
+    "companyName": "LLC \"Company Name\"",
+    "companyNameShort": "Company Name",
+    "contacts": "Contacts",
+    "sitemap": "Site Map",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  },
+  "noTopics":"There are no topics yet. Be the first!",
+   "createTopic":"Create topic",
+   "contestStatus":{
+        "status":"Competition application status",
+        "pending":"Pending",
+        "approved":"Approved",
+        "rejected":"Rejected",
+        "applied":"Applied"
+   },
+   "author":"Author",
+   "tracks": {
+    "music": "Music",
+    "animation": "Animation",
+    "cinema": "Cinema",
+    "title": "Tracks",
+    "selected": "Selected",
+    "select": "Select a track",
+    "entriesTitle": "Participant works for track",
+    "noEntries": "No approved entries for this track.",
+    "presentation": "Presentation",
+    "author": "Author",
+    "participate": "Participate in this track",
+    "profileLoadError": "Error loading profile:",
+    "entriesLoadError": "Error loading entries:"
+  },
+  "roles": {
+    "user": "User"
+  },
+  "logout": "Log out"
+
+
+}

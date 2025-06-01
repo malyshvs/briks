@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -13,18 +14,25 @@ export default function RegisterForm() {
     citizenship: "",
     registrationAddress: "",
     avatar: "",
+    agreement: false,
   });
+  const { t } = useTranslation();
 
   const [message, setMessage] = useState("");
   const [avatarFile, setAvatarFile] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, type, checked, value } = e.target;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault();
+    if (!formData.agreement) {
+      setMessage(t("error.agreement"));
+      return;
+    }
+
     try {
       const data = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
@@ -35,28 +43,26 @@ export default function RegisterForm() {
       }
 
       const res = await axios.post("/api/auth/register", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       setMessage(res.data.message);
     } catch (err) {
-      setMessage(err.response?.data?.message || "Ошибка регистрации");
+      setMessage(err.response?.data?.message || t("error.registration"));
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <h2 className="text-2xl font-bold text-center text-gray-800">
-        Регистрация
+        {t("registerTitle")}
       </h2>
 
       <input
         className="w-full p-2 border border-gray-300 rounded"
         type="text"
         name="fullName"
-        placeholder="ФИО"
+        placeholder={t("fullName")}
         onChange={handleChange}
         required
       />
@@ -74,7 +80,7 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="text"
         name="nickname"
-        placeholder="Псевдоним"
+        placeholder={t("nickname")}
         onChange={handleChange}
         required
       />
@@ -83,7 +89,7 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="password"
         name="password"
-        placeholder="Пароль"
+        placeholder={t("password")}
         onChange={handleChange}
         required
       />
@@ -92,7 +98,7 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="date"
         name="birthDate"
-        placeholder="Дата рождения"
+        placeholder={t("birthDate")}
         onChange={handleChange}
         required
       />
@@ -101,7 +107,7 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="tel"
         name="phone"
-        placeholder="Номер телефона"
+        placeholder={t("phone")}
         onChange={handleChange}
         required
       />
@@ -110,7 +116,7 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="text"
         name="citizenship"
-        placeholder="Гражданство"
+        placeholder={t("citizenship")}
         onChange={handleChange}
         required
       />
@@ -119,13 +125,13 @@ export default function RegisterForm() {
         className="w-full p-2 border border-gray-300 rounded"
         type="text"
         name="registrationAddress"
-        placeholder="Адрес регистрации"
+        placeholder={t("registrationAddress")}
         onChange={handleChange}
         required
       />
-      <div className="space-y-2">
-        <label className="block font-semibold">Аватарка</label>
 
+      <div className="space-y-2">
+        <label className="block font-semibold">{t("avatarLabel")}</label>
         <div className="flex gap-2">
           {["avatar1.png", "avatar2.png", "avatar3.png"].map((name) => (
             <img
@@ -146,7 +152,7 @@ export default function RegisterForm() {
         </div>
 
         <div>
-          <label className="block mt-2">Или загрузите свою:</label>
+          <label className="block mt-2">{t("uploadYourOwn")}</label>
           <input
             type="file"
             accept="image/*"
@@ -155,19 +161,41 @@ export default function RegisterForm() {
         </div>
       </div>
 
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          name="agreement"
+          checked={formData.agreement}
+          onChange={handleChange}
+          className="mr-2"
+          id="agreement"
+        />
+        <label htmlFor="agreement" className="text-sm">
+          {t("agreementText")}{" "}
+          <a
+            href="/privacy"
+            className="underline text-blue-600"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("privacyPolicy")}
+          </a>
+        </label>
+      </div>
+
       <button
         type="submit"
         className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
       >
-        Зарегистрироваться
+        {t("register")}
       </button>
 
       {message && <p className="text-sm text-red-600 text-center">{message}</p>}
 
       <p className="text-center text-sm text-gray-600">
-        Уже есть аккаунт?{" "}
+        {t("alreadyHaveAccount")}{" "}
         <Link to="/auth" className="text-blue-600 hover:underline">
-          Войти
+          {t("login")}
         </Link>
       </p>
     </form>

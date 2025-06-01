@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useTranslation } from "react-i18next";
 const FAQ = () => {
   const [user, setUser] = useState(null);
   const [faqs, setFaqs] = useState([]);
@@ -9,7 +9,7 @@ const FAQ = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
-
+  const { t } = useTranslation();
   // Получаем текущего пользователя (если есть токен)
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -108,13 +108,11 @@ const FAQ = () => {
     }
   };
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <div>{t("loading")}</div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Часто задаваемые вопросы (FAQ)
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">{t("faq.title")}</h1>
 
       {message && (
         <p className="mb-4 text-center text-green-600 font-semibold">
@@ -123,7 +121,7 @@ const FAQ = () => {
       )}
 
       {/* Список FAQ */}
-      {faqs.length === 0 && <p>Пока нет вопросов.</p>}
+      {faqs.length === 0 && <p>{t("faq.noQuestions")}</p>}
 
       <div>
         {faqs.map((faq, index) => (
@@ -137,13 +135,13 @@ const FAQ = () => {
                   onClick={() => handleEdit(index)}
                   className="mr-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
-                  Редактировать
+                  {t("faq.edit")}
                 </button>
                 <button
                   onClick={() => handleDelete(faq._id)}
                   className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
                 >
-                  Удалить
+                  {t("faq.delete")}
                 </button>
               </div>
             )}
@@ -154,14 +152,12 @@ const FAQ = () => {
       {user?.role === "admin" && (
         <div className="mt-8 border-t pt-6">
           <h2 className="text-xl font-semibold mb-4">
-            {editingIndex === null
-              ? "Добавить новый вопрос"
-              : "Редактировать вопрос"}
+            {editingIndex === null ? t("faq.add") : t("faq.editing")}
           </h2>
 
           <div className="mb-4">
             <label htmlFor="question" className="block font-semibold mb-1">
-              Вопрос
+              {t("faq.questionLabel")}
             </label>
             <input
               id="question"
@@ -169,13 +165,13 @@ const FAQ = () => {
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
-              placeholder="Введите вопрос"
+              placeholder={t("faq.questionPlaceholder")}
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="answer" className="block font-semibold mb-1">
-              Ответ
+              {t("faq.answerLabel")}
             </label>
             <textarea
               id="answer"
@@ -183,7 +179,7 @@ const FAQ = () => {
               onChange={(e) => setAnswer(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               rows={5}
-              placeholder="Введите ответ"
+              placeholder={t("faq.answerPlaceholder")}
             />
           </div>
 
@@ -192,14 +188,14 @@ const FAQ = () => {
               onClick={handleSave}
               className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
             >
-              Сохранить
+              {t("faq.save")}
             </button>
             {editingIndex !== null && (
               <button
                 onClick={handleCancel}
                 className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
               >
-                Отмена
+                {t("faq.cancel")}
               </button>
             )}
           </div>

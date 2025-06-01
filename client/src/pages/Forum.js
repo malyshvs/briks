@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function Forum() {
   const [topics, setTopics] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const fetchTopics = async () => {
@@ -55,12 +56,12 @@ export default function Forum() {
   return (
     <div className="max-w-5xl mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Форум</h1>
+        <h1 className="text-3xl font-bold">{t("forum")}</h1>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          Создать обсуждение
+          {t("createTopic")}
         </button>
       </div>
 
@@ -92,9 +93,7 @@ export default function Forum() {
             </Link>
           ))
         ) : (
-          <div className="p-6 text-center text-gray-500">
-            Тем пока нет. Будьте первым!
-          </div>
+          <div className="p-6 text-center text-gray-500">{t("noTopics")}</div>
         )}
       </div>
 

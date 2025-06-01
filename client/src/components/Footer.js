@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-900 text-white py-6 mt-auto">
       <div className="container mx-auto px-4">
@@ -6,19 +10,19 @@ const Footer = () => {
           <div className="flex items-center space-x-3">
             <img src={require("./logo.png")} alt="Logo" className="h-8" />
             <span className="text-sm md:text-base">
-              ООО &quot;Название компании&quot;
+              {t("footer.companyName")}
             </span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
             <a href="/contacts" className="hover:underline">
-              Контакты
+              {t("footer.contacts")}
             </a>
             <a href="/sitemap" className="hover:underline">
-              Карта сайта
+              {t("footer.sitemap")}
             </a>
             <a href="/privacy" className="hover:underline">
-              Политика конфиденциальности
+              {t("footer.privacy")}
             </a>
           </div>
 
@@ -37,7 +41,8 @@ const Footer = () => {
         </div>
 
         <div className="text-center text-xs text-gray-400 mt-4">
-          © {new Date().getFullYear()} Название компании. Все права защищены.
+          © {new Date().getFullYear()} {t("footer.companyNameShort")}.{" "}
+          {t("footer.rights")}
         </div>
       </div>
     </footer>
