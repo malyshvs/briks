@@ -24,7 +24,7 @@
   "forum": "Forum",
   "news": "News",
   "tracksTitle": "Tracks",
-  "history": "History",
+  "historyT": "History",
   "faqTitle": "FAQ",
   "profile": "Profile",
   "contactUs": "Contact Us",
@@ -81,7 +81,64 @@
   "roles": {
     "user": "User"
   },
-  "logout": "Log out"
-
+  "logout": "Log out",
+  "homeP": {
+    "description": {
+      "title": "The competition is aimed at stimulating and developing the creative industries...",
+      "text": "Support for export-oriented projects in the Far East and Arctic regions entering the international market."
+    },
+    "cards": {
+      "closed": "Application submission is closed!",
+      "participation": "Participation in the nomination",
+      "nomination": "“Best {{direction}} project”",
+      "rules": "Read the rules"
+    },
+    "directions": {
+      "music": "Music",
+      "cinema": "Cinema",
+      "animation": "Animation"
+    },
+    "timeline": {
+      "applications": "Application campaign",
+      "screening": "Technical screening"
+    }
+  },
+  "months": {
+    "april": "April",
+    "may": "May"
+  },
+ "privacy": {
+    "title": "Consent to Personal Data Processing for Participation in the B8 Innovation Projects Accelerator",
+    "text": "By submitting an application on the website, I confirm my consent to the Innovation Development Fund of the Republic of Sakha (Yakutia) (OGRN 1181447016211; hereinafter referred to as the operator) to process the following personal data:\n\n– surname, first name, patronymic;\n\n– year of birth;\n\n– month of birth;\n\n– date of birth;\n\n– address;\n\n– phone numbers;\n\n– email address;\n\n– technical data automatically transmitted by the device through which the operator’s information systems and/or website (b8accelerator.com) are used (including device specifications (device identifier), IP address, cookies, browser information, etc.), including for the purpose of performing the following actions:\n\n– processing (including collection, systematization, accumulation, storage, updating (modification)),\n\n– use, anonymization, dissemination,\n\n– blocking, destruction of personal data, in order to provide me with information about the operator, its services, projects, and events, to communicate with me including when I contact the operator; to organize my participation in events and surveys conducted by the operator; to fulfill contractual obligations by the operator, including sending SMS and email messages to the phone numbers and/or email addresses provided in this consent; to send me operator news materials; to receive from the operator via telecommunication networks information (informational and/or promotional materials) about the operator’s projects and events.\n\nI hereby confirm that I have read and agree that the operator processing my personal data has the right, in accordance with part 3 of Article 6 of the Federal Law of July 27, 2006 No. 152-FZ \"On Personal Data,\" to entrust the processing of my personal data to another party based on a contract concluded with that party, including a state contract, or by adopting a relevant act.\n\nThis consent is granted by me for a period of 10 (ten) years. This consent may be revoked by submitting a written request to terminate the processing of my personal data, sent to the operator by registered mail with confirmation of delivery, or by another available method that confirms its receipt.\n\nI also confirm that the contact information I provided when registering on the operator's website matches the contact details of the data subject for the purposes of providing information about personal data processing and in other cases provided by the legislation of the Russian Federation."
+  },
+  "history": {
+    "title": "History",
+    "labels": {
+      "applications": "applications",
+      "visitors": "visitors",
+      "regions": "regions",
+      "winners": "Winners"
+    },
+    "directions": {
+      "software_it": "Software Development and IT",
+      "contemporary_art": "Contemporary Art",
+      "jewelry_design": "Jewelry Design",
+      "music": "Music",
+      "cg_animation": "Computer Graphics and Animation",
+      "fashion": "Fashion Design and Production",
+      "cinema": "Cinema",
+      "game_dev": "Game Development"
+    },
+    "descriptions": {
+      "software_it": "Hackathons, IT conferences, and master classes by top developers.",
+      "contemporary_art": "Exhibitions, installations, and paintings by young artists.",
+      "jewelry_design": "Jewelry design competition and expert-led masterclasses.",
+      "music": "Band performances, solo acts, and singer-songwriter contests.",
+      "cg_animation": "Animation and 3D modeling contests, student project presentations.",
+      "fashion": "Fashion shows and young fashion designers competition.",
+      "cinema": "Short film festival and meetups with directors.",
+      "game_dev": "Game jams, indie game expos, and project presentations."
+    }
+  }
 
 }

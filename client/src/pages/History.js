@@ -1,65 +1,63 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const directions = [
-  "Разработка ПО и IT",
-  "Современное искусство",
-  "Дизайн украшений",
-  "Музыка",
-  "Компьютерная графика и анимация",
-  "Дизайн и производство одежды",
-  "Кино",
-  "Разработка игр",
+  "software_it",
+  "contemporary_art",
+  "jewelry_design",
+  "music",
+  "cg_animation",
+  "fashion",
+  "cinema",
+  "game_dev",
 ];
 
 const content = {
-  "Разработка ПО и IT": {
+  software_it: {
     stats: { applications: 120, visitors: 300, regions: 15 },
-    description:
-      "Хакатоны, IT-конференции и мастер-классы от ведущих разработчиков.",
-    winners: ["Иван Петров", "Анна Сидорова"],
+    description: "hackathons_it_conferences",
+    winners: ["Ivan Petrov", "Anna Sidorova"],
   },
-  "Современное искусство": {
+  contemporary_art: {
     stats: { applications: 80, visitors: 250, regions: 10 },
-    description: "Выставки, инсталляции и живопись от молодых художников.",
-    winners: ["Мария Кузнецова", "Петр Власов"],
+    description: "exhibitions_installations",
+    winners: ["Maria Kuznetsova", "Pyotr Vlasov"],
   },
-  "Дизайн украшений": {
+  jewelry_design: {
     stats: { applications: 81, visitors: 80, regions: 12 },
-    description:
-      "Конкурс ювелирных изделий и мастер-классы от экспертов отрасли.",
-    winners: ["Светлана Григорьева", "Анна Шмакова"],
+    description: "jewelry_competition",
+    winners: ["Svetlana Grigorieva", "Anna Shmakova"],
   },
-  Музыка: {
+  music: {
     stats: { applications: 60, visitors: 200, regions: 8 },
-    description:
-      "Выступления групп, сольных исполнителей и конкурс авторской песни.",
-    winners: ["DJ Kolya", "Вика Ветер"],
+    description: "live_music_performances",
+    winners: ["DJ Kolya", "Vika Veter"],
   },
-  "Компьютерная графика и анимация": {
+  cg_animation: {
     stats: { applications: 45, visitors: 150, regions: 7 },
-    description:
-      "Конкурс анимации, 3D-моделирования и презентации студенческих проектов.",
-    winners: ["Алексей Морозов", "Лена Иванова"],
+    description: "animation_contest",
+    winners: ["Alexey Morozov", "Lena Ivanova"],
   },
-  "Дизайн и производство одежды": {
+  fashion: {
     stats: { applications: 55, visitors: 180, regions: 9 },
-    description: "Модные показы и конкурс молодых дизайнеров одежды.",
-    winners: ["Дарья Кравцова", "Игорь Сапунов"],
+    description: "fashion_shows",
+    winners: ["Daria Kravtsova", "Igor Sapunov"],
   },
-  Кино: {
+  cinema: {
     stats: { applications: 70, visitors: 220, regions: 11 },
-    description: "Фестиваль короткометражных фильмов и встречи с режиссёрами.",
-    winners: ["Владимир Белов", "Оксана Литвинова"],
+    description: "short_film_festival",
+    winners: ["Vladimir Belov", "Oksana Litvinova"],
   },
-  "Разработка игр": {
+  game_dev: {
     stats: { applications: 95, visitors: 310, regions: 14 },
-    description: "Game jam, выставки инди-игр и презентации игровых проектов.",
+    description: "game_jam_expo",
     winners: ["Team Pixel", "IndieStudioX"],
   },
 };
 
 const HistoryPage = () => {
-  const [selected, setSelected] = useState("Разработка ПО и IT");
+  const { t } = useTranslation();
+  const [selected, setSelected] = useState("software_it");
 
   const data = content[selected];
 
@@ -67,7 +65,7 @@ const HistoryPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#1d0037] to-[#450654] text-white py-10 px-4">
       <div className="max-w-6xl mx-auto space-y-10">
         <h1 className="text-4xl font-serif font-semibold text-center">
-          История
+          {t("history.title")}
         </h1>
 
         <div className="flex flex-wrap justify-center gap-4 border border-white/20 p-4 rounded-lg">
@@ -81,34 +79,38 @@ const HistoryPage = () => {
                   : "bg-white/10 hover:bg-white/20 text-white"
               }`}
             >
-              {dir}
+              {t(`history.directions.${dir}`)}
             </button>
           ))}
         </div>
 
         <div className="bg-white/10 rounded-lg p-6 space-y-6">
-          <h2 className="text-2xl font-bold text-center">{selected}</h2>
+          <h2 className="text-2xl font-bold text-center">
+            {t(`history.directions.${selected}`)}
+          </h2>
 
           <div className="flex flex-col md:flex-row justify-around text-center">
             <div>
               <p className="text-3xl font-bold">{data.stats.applications}</p>
-              <p className="text-sm">заявок</p>
+              <p className="text-sm">{t("history.labels.applications")}</p>
             </div>
             <div>
               <p className="text-3xl font-bold">{data.stats.visitors}</p>
-              <p className="text-sm">посетителей</p>
+              <p className="text-sm">{t("history.labels.visitors")}</p>
             </div>
             <div>
               <p className="text-3xl font-bold">{data.stats.regions}</p>
-              <p className="text-sm">регионов</p>
+              <p className="text-sm">{t("history.labels.regions")}</p>
             </div>
           </div>
 
-          <p className="text-center text-sm">{data.description}</p>
+          <p className="text-center text-sm">
+            {t(`history.descriptions.${selected}`)}
+          </p>
 
           <div className="mt-6">
             <h3 className="text-xl font-semibold text-center mb-2">
-              Победители:
+              {t("history.labels.winners")}
             </h3>
             <ul className="list-disc text-sm list-inside text-center space-y-1">
               {data.winners.map((winner) => (

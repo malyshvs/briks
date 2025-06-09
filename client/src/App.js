@@ -23,6 +23,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ReviewApplicationsPage from "./pages/ReviewApplicationsPage";
 import AdminUserProfilePage from "./pages/AdminUserProfilePage";
 import AdminUsersPage from "./pages/AdminUsersPage";
+import Privacy from "./pages/Privacy";
 function App() {
   return (
     <Router>
@@ -51,6 +52,7 @@ function App() {
             <Route path="/review" element={<ReviewApplicationsPage />} />
             <Route path="/admin/users" element={<AdminUsersPage />} />
             <Route path="/admin/users/:id" element={<AdminUserProfilePage />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route
               path="/profile"
               element={

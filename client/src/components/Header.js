@@ -28,7 +28,7 @@ const Header = () => {
         <Link to="/forum">{t("forum")}</Link>
         <Link to="/news">{t("news")}</Link>
         <Link to="/tracks">{t("tracksTitle")}</Link>
-        <Link to="/history">{t("history")}</Link>
+        <Link to="/history">{t("historyT")}</Link>
         <Link to="/faq">{t("faqTitle")}</Link>
         <Link to="/profile">{t("profile")}</Link>
       </nav>
@@ -79,7 +79,7 @@ const Header = () => {
             {t("tracks")}
           </Link>
           <Link to="/history" onClick={toggleMenu}>
-            {t("history")}
+            {t("historyT")}
           </Link>
           <Link to="/faq" onClick={toggleMenu}>
             {t("faq")}
