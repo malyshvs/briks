@@ -139,6 +139,9 @@
       "cinema": "Short film festival and meetups with directors.",
       "game_dev": "Game jams, indie game expos, and project presentations."
     }
-  }
+    },
+    "accessibility": {
+      "toggle": "Accessibility version"
+    }
 
 }

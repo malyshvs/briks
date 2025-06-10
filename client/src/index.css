@@ -30,3 +30,20 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.accessibility-mode {
+  font-size: 1.25rem; 
+  letter-spacing: 0.5px;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.accessibility-mode a {
+  color: #ffd700 !important; 
+  text-decoration: underline;
+}
+
+.accessibility-mode button {
+  background-color: #222 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}

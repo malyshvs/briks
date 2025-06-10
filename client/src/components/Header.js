@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
@@ -10,7 +10,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
+  const toggleAccessibilityMode = () => {
+    document.body.classList.toggle("accessibility-mode");
+  };
   return (
     <header className="bg-[#0F172A] shadow-md p-4 flex items-center justify-between relative z-50">
       <div className="flex items-center space-x-4">
@@ -50,6 +52,12 @@ const Header = () => {
         >
           EN
         </button>
+        <button
+          onClick={toggleAccessibilityMode}
+          className="bg-yellow-300 text-black font-semibold px-4 py-2 rounded-md text-sm shadow hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+        >
+          {t("accessibility.toggle")}
+        </button>
         <Link
           to="/contact"
           className="bg-blue-600 text-white px-4 py-2 rounded"
@@ -76,17 +84,18 @@ const Header = () => {
             {t("news")}
           </Link>
           <Link to="/tracks" onClick={toggleMenu}>
-            {t("tracks")}
+            {t("tracksTitle")}
           </Link>
           <Link to="/history" onClick={toggleMenu}>
             {t("historyT")}
           </Link>
           <Link to="/faq" onClick={toggleMenu}>
-            {t("faq")}
+            {t("faqTitle")}
           </Link>
           <Link to="/profile" onClick={toggleMenu}>
             {t("profile")}
           </Link>
+
           <div className="flex space-x-4 pt-2">
             <button
               className={`${
@@ -107,6 +116,12 @@ const Header = () => {
               onClick={() => i18n.changeLanguage("en")}
             >
               EN
+            </button>
+            <button
+              onClick={toggleAccessibilityMode}
+              className="bg-yellow-300 text-black font-semibold px-4 py-2 rounded-md text-sm shadow hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+            >
+              {t("accessibility.toggle")}
             </button>
           </div>
 
